@@ -309,7 +309,7 @@ didResolver:
 ethr-did-resolver:
   $require: ethr-did-resolver?t=function&p=/ethr#getResolver
   $args:
-    - infuraProjectId: 3586660d179141e3801c3895de1c2eba
+    - infuraProjectId: ${INFURA_PROJECT_ID}
 
 web-did-resolver:
   $require: web-did-resolver?t=function&p=/web#getResolver

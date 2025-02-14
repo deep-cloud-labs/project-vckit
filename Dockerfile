@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM node:20 as build
+FROM node:20.12.2 AS build
 
 WORKDIR /app
 
@@ -58,7 +58,7 @@ COPY packages/vc-api/ packages/vc-api/
 RUN pnpm build
 
 # Stage 2: Run
-FROM node:20-alpine as vckit-api
+FROM node:20.12.2-alpine AS vckit-api
 
 WORKDIR /app
 
