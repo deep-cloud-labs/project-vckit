@@ -113,9 +113,10 @@ export const SwaggerApiSchemaRouter = (): Router => {
 };
 
 const getApiVersion = () => {
-  const version = fs.readFileSync(VERSION_FILE, 'utf8');
-  const { apiVersion } = JSON.parse(version);
+  // const version = fs.readFileSync(VERSION_FILE, 'utf8');
+  // const { apiVersion } = JSON.parse(version);
 
-  if (!apiVersion) throw Error('API version not found');
-  return apiVersion;
+  // if (!apiVersion) throw Error('API version not found');
+  // return apiVersion;
+  return "1.0.0";
 };
