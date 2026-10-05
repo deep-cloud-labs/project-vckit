@@ -1,0 +1,44 @@
+services:
+  vckit-api:
+    build:
+      context: .
+    environment:
+      - DATABASE_TYPE=${VCKIT_DATABASE_TYPE}
+      - DATABASE_USERNAME=${VCKIT_DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${VCKIT_DATABASE_PASSWORD}
+      - DATABASE_NAME=${VCKIT_DATABASE_NAME}
+      - DATABASE_HOST=${VCKIT_DATABASE_HOST}
+      - DATABASE_PORT=${VCKIT_DATABASE_PORT}
+      - DATABASE_ENCRYPTION_KEY=${VCKIT_DATABASE_ENCRYPTION_KEY}
+      - PORT=${VCKIT_PORT}
+      - PROTOCOL=${VCKIT_PROTOCOL}
+      - API_DOMAIN=${VCKIT_API_DOMAIN}
+      - API_KEY=${VCKIT_API_KEY}
+      - INFURA_PROJECT_ID=${VCKIT_INFURA_PROJECT_ID}
+    ports:
+      - ${VCKIT_PORT}:${VCKIT_PORT}
+    depends_on:
+      - db
+    networks:
+      - dpp-network
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - ${VCKIT_DATABASE_PORT}:${VCKIT_DATABASE_PORT}
+    environment:
+      - POSTGRES_USER=${VCKIT_DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${VCKIT_DATABASE_PASSWORD}
+      - POSTGRES_DB=${VCKIT_DATABASE_NAME}
+    volumes:
+      - vckit-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - dpp-network
+
+volumes:
+  vckit-data:
+
+networks:
+  dpp-network:
+    external: true
